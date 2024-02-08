@@ -1,6 +1,17 @@
 package Entities;
 
 public abstract class Renderable {
+protected final Position position;
+
+    protected Renderable(Position position) {
+        this.position = position;
+    }
+
+    public Position getPosition() {
+    return position;
+    }
+
+    public abstract String[] getOverlay();
     public final static class Position {
         public int x;
 
@@ -12,8 +23,4 @@ public abstract class Renderable {
         public int y;
 
     }
-
-    public abstract Position getPosition();
-
-    public abstract String[] getOverlay();
 }

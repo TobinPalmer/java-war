@@ -1,3 +1,5 @@
+package Logic;
+
 public class Card {
     final Suit suit;
     final int rank;
@@ -10,6 +12,14 @@ public class Card {
         this.suit = suit;
         this.rank = rank;
     }
+
+public Suit getSuit() {
+return suit;
+}
+
+public int getRank() {
+return rank;
+}
 
     public String toString() {
         String rank = switch (this.rank) {

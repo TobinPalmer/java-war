@@ -1,3 +1,7 @@
+package Logic;
+
+import Logic.Card;
+
 import java.util.ArrayList;
 
 public class Player {
