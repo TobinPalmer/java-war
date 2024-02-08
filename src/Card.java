@@ -11,7 +11,6 @@ public class Card {
         this.rank = rank;
     }
 
-
     public String toString() {
         String rank = switch (this.rank) {
             case 1 -> "Ace";
@@ -26,6 +25,22 @@ public class Card {
             case HEARTS -> "Hearts";
             case SPADES -> "Spades";
         };
-        return rank + " of " + suit;
+        return STR."\{rank} of \{suit}";
+    }
+
+    public enum Comparison {
+        WIN,
+        LOSE,
+        TIE
+    }
+
+    public Comparison compareTo(Card card) {
+        if (this.rank > card.rank) {
+            return Comparison.WIN;
+        } else if (this.rank < card.rank) {
+            return Comparison.LOSE;
+        } else {
+            return Comparison.TIE;
+        }
     }
 }

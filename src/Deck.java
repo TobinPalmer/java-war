@@ -20,8 +20,15 @@ public class Deck {
         }
     }
 
+    public void deal(Player player1, Player player2) {
+        while(cards.size() >= 2) {
+            player1.deal(cards.removeLast());
+            player2.deal(cards.removeLast());
+        }
+    }
+
     public Card draw() {
-        return cards.remove(cards.size() - 1);
+        return cards.removeLast();
     }
 
     public int size() {
