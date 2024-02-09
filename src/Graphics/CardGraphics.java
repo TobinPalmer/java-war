@@ -14,12 +14,40 @@ public class CardGraphics {
         return face;
     }
 
+    public static String[] getStack(int s) {
+        return stacks[Math.min(s, stacks.length - 1)];
+    }
+
     private static final Map<Card.Suit, Character> suitCharacters = new HashMap<>(4) {{
         put(Card.Suit.CLUBS, '♣');
         put(Card.Suit.DIAMONDS, '♦');
         put(Card.Suit.HEARTS, '♥');
         put(Card.Suit.SPADES, '♠');
     }};
+
+    private static final String[][] stacks = {
+            {
+                    " _________",
+                    "|         |",
+                    "|         |",
+                    "|         |",
+                    "|         |",
+                    "|         |",
+                    "|         |",
+                    "|         |",
+                    " ~~~~~~~~~"
+            },
+            {
+                    " _________",
+                    "|         |",
+                    "|         |",
+                    "|         |",
+                    "|         |",
+                    "|         |",
+                    "|-~~--~~~-|",
+                    "|~-~--~~--|"
+            },
+    };
 
     private static final String[][] cardFaces = {
             {
@@ -168,6 +196,19 @@ public class CardGraphics {
             {
                     """
                       _________
+                     |J /~~|_  |
+                     |+ | o`,  |
+                     |  | -|   |
+                     | =~)+(_= |
+                     |   |- |  |
+                     |  `.o | +|
+                     |  ~|__/ P|
+                      ~~~~~~~~~
+                    """
+            },
+            {
+                    """
+                      _________
                      |Q |~~~|  |
                      |+ /o,o\\  |
                      |  \\_-_/  |
@@ -178,17 +219,34 @@ public class CardGraphics {
                       ~~~~~~~~~
                     """
             },
+            {
+                    """
+                      _________
+                     |K |/|\\|  |
+                     |+ /o,o\\  |
+                     |  \\_-_/  |
+                     | ~-_-~-_ |
+                     |  /~-~\\  |
+                     |  \\o`o/ +|
+                     |  |\\|/| X|
+                      ~~~~~~~~~
+                    """
+            },
     };
 
     public final static String[][] cardFlippingAnimation = {
             {
-                    "\\________/",
-                    "|}} :: {{|",
-                    "|}} :: {{|",
-                    "|}} :: {{|",
-                    "|}} :: {{|",
-                    "|}} :: {{|",
-                    "/________\\",
+                    """
+                      _________
+                     |         |
+                     |         |
+                     |         |
+                     |         |
+                     |         |
+                     |         |
+                     |         |
+                      ~~~~~~~~~
+            """
             },
 
             {

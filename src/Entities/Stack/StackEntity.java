@@ -1,14 +1,22 @@
 package Entities.Stack;
 
 import Entities.Renderable;
+import Graphics.CardGraphics;
 
 public class StackEntity extends Renderable {
-    public StackEntity(Position position) {
+    private int size = 0;
+
+    public StackEntity(Position position, int s) {
         super(position);
+        this.size = s;
+    }
+
+    public void setSize(int s) {
+        this.size = s;
     }
 
     @Override
     public String[] getOverlay() {
-        return new String[0];
+        return CardGraphics.getStack(size);
     }
 }

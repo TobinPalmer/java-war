@@ -4,7 +4,8 @@ public class FaceUpStackEntity extends StackEntity {
     public Position position;
 
     public FaceUpStackEntity(Position position) {
-        super(position);
+        super(position, 0);
+        this.position = position;
     }
 
     @Override
