@@ -28,6 +28,11 @@ public abstract class Renderable {
             this.y += position.y;
         }
 
+        public void set(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+
         public int y;
 
     }

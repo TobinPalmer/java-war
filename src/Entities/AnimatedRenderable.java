@@ -1,20 +1,24 @@
 package Entities;
 
 public abstract class AnimatedRenderable extends Renderable {
+    private final Position startPosition;
     private final Position targetPosition;
-    private final double speed;
+    private final double time;
 
-    public AnimatedRenderable(Position position, Position targetPosition, double speed) {
+    public AnimatedRenderable(Position position, Position targetPosition, double time) {
         super(position);
+        this.startPosition = position;
         this.targetPosition = targetPosition;
-        this.speed = speed;
+        this.time = time;
     }
 
-    public void animate() {
-        final double slope = (double) (targetPosition.y - position.y) / (targetPosition.x - position.x);
-        final double angle = Math.atan(slope);
-        final double x = speed * Math.cos(angle);
-        final double y = speed * Math.sin(angle);
-        position.add(new Position((int) x, (int) y));
+    public void animate(double t) {
+        double x = (targetPosition.x - startPosition.x) * (t / time) + position.x;
+        double y = (targetPosition.y - startPosition.y) * (t / time) + position.y;
+        position.set((int) x, (int) y);
+    }
+
+    public boolean isDone() {
+        return position.x == targetPosition.x && position.y == targetPosition.y;
     }
 }

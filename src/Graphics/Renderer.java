@@ -2,12 +2,28 @@ package Graphics;
 
 import Entities.Renderable;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Renderer {
-    public static final int WIDTH = 150;
+    //    public static final int WIDTH = 150;
+    public static final int WIDTH;
+
+    static {
+        try {
+            WIDTH = execCmd("tput cols 2> /dev/tty").isEmpty() ? 150 : Integer.parseInt(execCmd("tput cols 2> /dev/tty").trim()) - 2;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public static final int HEIGHT = 50;
+
+    private static void clearScreen() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
 
     private static final ArrayList<Renderable> frameOverlays = new ArrayList<>();
 
@@ -40,10 +56,26 @@ public class Renderer {
             }
         }
 
-        for (String line : frame) {
-            System.out.println(line);
-        }
+        clearScreen();
+
+        System.out.println(String.join("\n", frame));
 
         frameOverlays.clear();
+    }
+
+    public static String execCmd(String cmd) throws java.io.IOException {
+        // Run a command and get the output with ProcessBuilder
+        var processBuilder = new ProcessBuilder("bash", "-c", cmd);
+        var process = processBuilder.start();
+        var output = new StringBuilder();
+        var reader = new java.io.BufferedReader(new java.io.InputStreamReader(process.getInputStream()));
+        String line;
+        while ((line = reader.readLine()) != null) {
+            output.append(line).append("\n");
+        }
+
+        // Remove the last newline character
+//        output.deleteCharAt(output.length() - 1);
+        return output.toString();
     }
 }
