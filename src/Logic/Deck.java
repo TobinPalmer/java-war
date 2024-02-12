@@ -7,7 +7,7 @@ public class Deck {
 
     public Deck() {
         for (Card.Suit suit : Card.Suit.values()) {
-            for (int rank = 1; rank <= 13; rank++) {
+            for (int rank = 0; rank < 13; rank++) {
                 cards.add(new Card(suit, rank));
             }
         }

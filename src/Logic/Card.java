@@ -23,10 +23,10 @@ return rank;
 
     public String toString() {
         String rank = switch (this.rank) {
-            case 1 -> "Ace";
             case 11 -> "Jack";
             case 12 -> "Queen";
             case 13 -> "King";
+            case 14 -> "Ace";
             default -> Integer.toString(this.rank);
         };
         String suit = switch (this.suit) {
