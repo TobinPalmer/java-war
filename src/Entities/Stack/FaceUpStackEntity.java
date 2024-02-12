@@ -1,5 +1,7 @@
 package Entities.Stack;
 
+import Entities.Position;
+
 public class FaceUpStackEntity extends StackEntity {
     public Position position;
 

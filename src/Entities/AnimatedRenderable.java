@@ -6,7 +6,7 @@ public abstract class AnimatedRenderable extends Renderable {
     private final double time;
 
     public AnimatedRenderable(Position position, Position targetPosition, double time) {
-        super(position);
+        super(position.copy());
         this.startPosition = new Position(position.x, position.y);
         this.targetPosition = targetPosition;
         this.time = time;

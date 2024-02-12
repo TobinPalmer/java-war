@@ -9,6 +9,8 @@ import java.util.List;
 public class Renderer {
     public static final int FPS = 120;
     public static final int WIDTH;
+    public static final int HEIGHT = 50;
+    private static final ArrayList<Renderable> frameOverlays = new ArrayList<>();
 
     static {
         try {
@@ -18,14 +20,10 @@ public class Renderer {
         }
     }
 
-    public static final int HEIGHT = 50;
-
     private static void clearScreen() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
-
-    private static final ArrayList<Renderable> frameOverlays = new ArrayList<>();
 
     public static void addToFrame(Renderable... overlay) {
         frameOverlays.addAll(List.of(overlay));

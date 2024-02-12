@@ -1,6 +1,7 @@
 package Entities.Card;
 
 import Entities.AnimatedRenderable;
+import Entities.Position;
 import Graphics.CardGraphics;
 import Logic.Card;
 

@@ -1,6 +1,5 @@
 import Entities.Card.CardEntity;
 import Entities.Card.MovingCardEntity;
-import Entities.Renderable;
 import Entities.Stack.StackEntity;
 import Graphics.CardGraphics;
 import Graphics.PositionConstants;
@@ -40,12 +39,17 @@ public class GameOfWar {
             System.out.println(STR."\{player1Card} vs \{player2Card}");
             System.out.println(comparison);
 
-            final MovingCardEntity movingCard1 = new MovingCardEntity(new Renderable.Position(10, 10), new Renderable.Position(Renderer.WIDTH / 2 - 10, 30), 1000, player1Card);
-            final MovingCardEntity movingCard2 = new MovingCardEntity(new Renderable.Position(Renderer.WIDTH - 10, 10), new Renderable.Position(Renderer.WIDTH / 2 + 10, 30), 1000, player2Card);
+//            final MovingCardEntity movingCard1 = new MovingCardEntity(new Renderable.Position(10, 10), new Renderable.Position(Renderer.WIDTH / 2 - 10, 30), 1000, player1Card);
+//            final MovingCardEntity movingCard2 = new MovingCardEntity(new Renderable.Position(Renderer.WIDTH - 10, 10), new Renderable.Position(Renderer.WIDTH / 2 + 10, 30), 1000, player2Card);
+//            final MovingCardEntity movingCard1 = new MovingCardEntity(new Renderable.Position((CardGraphics.CARD_WIDTH / 2) + 4, (CardGraphics.CARD_HEIGHT / 2) + 2), new Renderable.Position(Renderer.WIDTH / 2 - 10, 30), 1000, player1Card);
+//            final MovingCardEntity movingCard2 = new MovingCardEntity(new Renderable.Position(Renderer.WIDTH - 10, 10), new Renderable.Position(Renderer.WIDTH / 2 + 10, 30), 1000, player2Card);
+
+            MovingCardEntity movingCard1 = new MovingCardEntity(PositionConstants.Player1DrawPile, PositionConstants.Player1Card, 1000, player1Card);
+            MovingCardEntity movingCard2 = new MovingCardEntity(PositionConstants.Player2DrawPile, PositionConstants.Player2Card, 1000, player2Card);
 
             Instant start = Instant.now();
-            while (!movingCard1.isDone()) {
-                long t = Duration.between(start, Instant.now()).toMillis();
+            while (!movingCard1.isDone() || !movingCard2.isDone()) {
+                double t = Duration.between(start, Instant.now()).toMillis();
 
                 movingCard1.animate(t);
                 movingCard2.animate(t);
@@ -57,8 +61,8 @@ public class GameOfWar {
                 Renderer.waitForNextFrame();
             }
 
-            CardEntity card1 = new CardEntity(new Renderable.Position(Renderer.WIDTH / 2 - 10, 30), player1Card);
-            CardEntity card2 = new CardEntity(new Renderable.Position(Renderer.WIDTH / 2 + 10, 30), player2Card);
+            CardEntity card1 = new CardEntity(PositionConstants.Player1Card, player1Card);
+            CardEntity card2 = new CardEntity(PositionConstants.Player2Card, player2Card);
 
             Renderer.addToFrame(player1Stack, player2Stack);
             Renderer.addToFrame(card1, card2);
