@@ -47,7 +47,8 @@ public class Renderer {
         for (Renderable overlay : frameOverlays) {
             String[] overlayLines = overlay.getOverlay();
             int y = HEIGHT - 1 - overlay.getPosition().y - (overlayLines.length / 2);
-            int x = overlay.getPosition().x;
+            int overlayWidth = overlayLines[0].length();
+            int x = overlay.getPosition().x - overlayWidth / 2;
             for (int i = 0; i < overlayLines.length; i++) {
                 String line = overlayLines[i];
                 int start = Math.max(0, x);

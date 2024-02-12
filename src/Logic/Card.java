@@ -4,30 +4,26 @@ public class Card {
     final Suit suit;
     final int rank;
 
-    public enum Suit {
-        CLUBS, DIAMONDS, HEARTS, SPADES
-    }
-
     public Card(Suit suit, int rank) {
         this.suit = suit;
         this.rank = rank;
     }
 
-public Suit getSuit() {
-return suit;
-}
+    public Suit getSuit() {
+        return suit;
+    }
 
-public int getRank() {
-return rank;
-}
+    public int getRank() {
+        return rank;
+    }
 
     public String toString() {
         String rank = switch (this.rank) {
-            case 11 -> "Jack";
-            case 12 -> "Queen";
-            case 13 -> "King";
-            case 14 -> "Ace";
-            default -> Integer.toString(this.rank);
+            case 9 -> "Jack";
+            case 10 -> "Queen";
+            case 11 -> "King";
+            case 12 -> "Ace";
+            default -> Integer.toString(this.rank + 2);
         };
         String suit = switch (this.suit) {
             case CLUBS -> "Clubs";
@@ -38,12 +34,6 @@ return rank;
         return STR."\{rank} of \{suit}";
     }
 
-    public enum Comparison {
-        WIN,
-        LOSE,
-        TIE
-    }
-
     public Comparison compareTo(Card card) {
         if (this.rank > card.rank) {
             return Comparison.WIN;
@@ -52,5 +42,15 @@ return rank;
         } else {
             return Comparison.TIE;
         }
+    }
+
+    public enum Suit {
+        CLUBS, DIAMONDS, HEARTS, SPADES
+    }
+
+    public enum Comparison {
+        WIN,
+        LOSE,
+        TIE
     }
 }

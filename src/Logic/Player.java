@@ -5,7 +5,7 @@ import Logic.Card;
 import java.util.ArrayList;
 
 public class Player {
-    private final ArrayList<Card> drawPile = new ArrayList<>();
+    public final ArrayList<Card> drawPile = new ArrayList<>();
     private final ArrayList<Card> discardPile = new ArrayList<>();
     private final String name;
 

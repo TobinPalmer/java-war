@@ -3,7 +3,6 @@ import Entities.Card.MovingCardEntity;
 import Entities.Renderable;
 import Entities.Stack.StackEntity;
 import Graphics.CardGraphics;
-import Graphics.GameGraphics;
 import Graphics.PositionConstants;
 import Graphics.Renderer;
 import Logic.Card;
@@ -12,7 +11,6 @@ import Logic.Player;
 
 import java.time.Duration;
 import java.time.Instant;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class GameOfWar {
@@ -54,7 +52,7 @@ public class GameOfWar {
 
                 Renderer.addToFrame(player1Stack, player2Stack);
                 Renderer.addToFrame(movingCard1, movingCard2);
-//                Renderer.render();
+                Renderer.render();
 
                 Renderer.waitForNextFrame();
             }
@@ -64,7 +62,7 @@ public class GameOfWar {
 
             Renderer.addToFrame(player1Stack, player2Stack);
             Renderer.addToFrame(card1, card2);
-//            Renderer.render();
+            Renderer.render();
 
             input.nextLine();
         }

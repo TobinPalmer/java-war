@@ -13,6 +13,11 @@ public class Deck {
         }
     }
 
+    @Override
+    public String toString() {
+        return STR."Deck{cards=\{cards}\{'}'}";
+    }
+
     public void shuffle() {
         for (int i = 0; i < cards.size(); i++) {
             int j = (int) (Math.random() * cards.size());
@@ -23,7 +28,7 @@ public class Deck {
     }
 
     public void deal(Player player1, Player player2) {
-        while(cards.size() >= 2) {
+        while (cards.size() >= 2) {
             player1.deal(cards.removeLast());
             player2.deal(cards.removeLast());
         }
