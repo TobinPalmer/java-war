@@ -7,15 +7,18 @@ public abstract class AnimatedRenderable extends Renderable {
 
     public AnimatedRenderable(Position position, Position targetPosition, double time) {
         super(position);
-        this.startPosition = position;
+        this.startPosition = new Position(position.x, position.y);
         this.targetPosition = targetPosition;
         this.time = time;
     }
 
     public void animate(double t) {
-        double x = (targetPosition.x - startPosition.x) * (t / time) + position.x;
-        double y = (targetPosition.y - startPosition.y) * (t / time) + position.y;
-        position.set((int) x, (int) y);
+        double progress = Math.min(t, time) / time;
+
+        double x = (targetPosition.x - startPosition.x) * progress + startPosition.x;
+        double y = (targetPosition.y - startPosition.y) * progress + startPosition.y;
+
+        position.set((int) Math.round(x), (int) Math.round(y));
     }
 
     public boolean isDone() {

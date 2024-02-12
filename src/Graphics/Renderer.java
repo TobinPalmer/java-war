@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Renderer {
-    //    public static final int WIDTH = 150;
+    public static final int FPS = 120;
     public static final int WIDTH;
 
     static {
@@ -74,8 +74,14 @@ public class Renderer {
             output.append(line).append("\n");
         }
 
-        // Remove the last newline character
-//        output.deleteCharAt(output.length() - 1);
         return output.toString();
+    }
+
+    public static void waitForNextFrame() {
+        try {
+            Thread.sleep(1000 / FPS);
+        } catch (InterruptedException e) {
+            System.out.println(STR."Interrupted \{e}");
+        }
     }
 }
