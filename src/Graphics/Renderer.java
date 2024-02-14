@@ -1,8 +1,11 @@
 package Graphics;
 
+import Entities.AnimatedRenderable;
 import Entities.Renderable;
 
 import java.io.IOException;
+import java.time.Duration;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +14,7 @@ public class Renderer {
     public static final int WIDTH;
     public static final int HEIGHT = 50;
     private static final ArrayList<Renderable> frameOverlays = new ArrayList<>();
+    private static Instant startInstant = null;
 
     static {
         try {
@@ -58,8 +62,29 @@ public class Renderer {
         clearScreen();
 
         System.out.println(String.join("\n", frame));
+    }
 
+    public static void resetOverlays() {
         frameOverlays.clear();
+    }
+
+    public static boolean animate() {
+        if (startInstant == null) startInstant = Instant.now();
+        boolean animationDone = true;
+        double t = Duration.between(startInstant, Instant.now()).toMillis();
+        for (Renderable overlay : frameOverlays) {
+            if (overlay instanceof AnimatedRenderable) {
+                ((AnimatedRenderable) overlay).animate(t);
+                if (!((AnimatedRenderable) overlay).isDone()) animationDone = false;
+            }
+        }
+        render();
+        Renderer.waitForNextFrame();
+        if (animationDone) {
+            startInstant = null;
+            return false;
+        }
+        return true;
     }
 
     public static String execCmd(String cmd) throws java.io.IOException {
@@ -77,8 +102,12 @@ public class Renderer {
     }
 
     public static void waitForNextFrame() {
+        wait(1000 / FPS);
+    }
+
+    public static void wait(int t) {
         try {
-            Thread.sleep(1000 / FPS);
+            Thread.sleep(t);
         } catch (InterruptedException e) {
             System.out.println(STR."Interrupted \{e}");
         }

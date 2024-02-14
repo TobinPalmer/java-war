@@ -8,30 +8,60 @@ import java.util.Map;
 public class CardGraphics {
     public static final int CARD_WIDTH = 10;
     public static final int CARD_HEIGHT = 9;
+    public final static String[][] cardFlippingAnimation = {
+            {
+                    "_________",
+                    "|         |",
+                    "|         |",
+                    "|         |",
+                    "|         |",
+                    "|         |",
+                    "|         |",
+                    "|         |",
+                    "~~~~~~~~~",
+            },
 
-    public static String[] getCardFace(int rank, Card.Suit suit) {
-        String[] face = cardFaces[rank];
-        for (int i = 0; i < face.length; i++) {
-            face[i] = face[i].replaceAll("\\*", String.valueOf(suitCharacters.get(suit)));
-        }
-        return face;
-    }
+            {
 
-    public static String[] getCardFace(Card card) {
-        return getCardFace(card.getRank(), card.getSuit());
-    }
+                    "  /▔▔▔ ",
+                    " /    |",
+                    "/     |",
+                    "|     |",
+                    "|     |",
+                    "|    / ",
+                    "|   /  ",
+                    " __/   ",
+            },
 
-    public static String[] getStack(int s) {
-        return stacks[Math.min(s, stacks.length - 1)];
-    }
+            {
+                    "||",
+                    "||",
+                    "||",
+                    "||",
+                    "||",
+                    "||",
+                    "||",
+                    "||",
+                    "||",
+            },
+            {
 
+                    "  /▔▔▔ ",
+                    " /    |",
+                    "/     |",
+                    "|     |",
+                    "|     |",
+                    "|    / ",
+                    "|   /  ",
+                    " __/   ",
+            },
+    };
     private static final Map<Card.Suit, Character> suitCharacters = new HashMap<>(4) {{
         put(Card.Suit.CLUBS, '♣');
         put(Card.Suit.DIAMONDS, '♦');
         put(Card.Suit.HEARTS, '♥');
         put(Card.Suit.SPADES, '♠');
     }};
-
     private static final String[][] stacks = {
             {
                     " _________",
@@ -55,7 +85,6 @@ public class CardGraphics {
                     "|~-~--~~--|"
             },
     };
-
     private static final String[][] cardFaces = {
             {
                     " _________ ",
@@ -202,55 +231,21 @@ public class CardGraphics {
             },
     };
 
-    public final static String[][] cardFlippingAnimation = {
-            {
-                    "_________",
-                    "|         |",
-                    "|         |",
-                    "|         |",
-                    "|         |",
-                    "|         |",
-                    "|         |",
-                    "|         |",
-                    "~~~~~~~~~",
-            },
+    public static String[] getCardFace(int rank, Card.Suit suit) {
+        String[] face = cardFaces[rank];
+        for (int i = 0; i < face.length; i++) {
+            face[i] = face[i].replaceAll("\\*", String.valueOf(suitCharacters.get(suit)));
+        }
+        return face;
+    }
 
-            {
+    public static String[] getCardFace(Card card) {
+        return getCardFace(card.getRank(), card.getSuit());
+    }
 
-                    "  /▔▔▔ ",
-                    " /    |",
-                    "/     |",
-                    "|     |",
-                    "|     |",
-                    "|    / ",
-                    "|   /  ",
-                    " __/   ",
-            },
-
-            {
-                    "||",
-                    "||",
-                    "||",
-                    "||",
-                    "||",
-                    "||",
-                    "||",
-                    "||",
-                    "||",
-            },
-
-            {
-
-                    "  /▔▔▔ ",
-                    " /    |",
-                    "/     |",
-                    "|     |",
-                    "|     |",
-                    "|    / ",
-                    "|   /  ",
-                    " __/   ",
-            },
-    };
+    public static String[] getStack(int s) {
+        return stacks[Math.min(s, stacks.length - 1)];
+    }
 
     public static Boolean areAllCardsCorrectLength() {
         for (String[] face : cardFaces) {

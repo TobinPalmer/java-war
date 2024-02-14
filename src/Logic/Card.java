@@ -40,7 +40,7 @@ public class Card {
         } else if (this.rank < card.rank) {
             return Comparison.LOSE;
         } else {
-            return Comparison.TIE;
+            return Comparison.DRAW;
         }
     }
 
@@ -51,6 +51,6 @@ public class Card {
     public enum Comparison {
         WIN,
         LOSE,
-        TIE
+        DRAW
     }
 }

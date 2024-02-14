@@ -2,15 +2,27 @@ package Entities.Game;
 
 import Entities.Position;
 import Entities.Renderable;
+import Graphics.GameGraphics;
 
 public class TitleEntity extends Renderable {
-    protected TitleEntity(Position position) {
+    public TextState textState;
+
+    public TitleEntity(Position position, TextState textState) {
         super(position);
+        this.textState = textState;
+    }
+
+    public void setTextState(TextState textState) {
+        this.textState = textState;
     }
 
     @Override
     public String[] getOverlay() {
-        return new String[0];
+        return switch (textState) {
+            case WIN -> GameGraphics.textGraphic[0];
+            case LOSE -> GameGraphics.textGraphic[1];
+            case DRAW -> GameGraphics.textGraphic[2];
+        };
     }
 
     public enum TextState {

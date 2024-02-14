@@ -14,8 +14,14 @@ public final class Position {
         this.y = y;
     }
 
+    public Position add(int x, int y) {
+        this.x += x;
+        this.y += y;
+
+        return this;
+    }
+
     public Position copy() {
         return new Position(x, y);
     }
 }
-
